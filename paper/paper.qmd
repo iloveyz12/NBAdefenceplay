@@ -1,0 +1,79 @@
+---
+title: ""
+author: "Zheng(Zeb) Yang"
+thanks: "Code and data are available at: <https://github.com/iloveyz12/NBAdefenceplay>. "
+date: "April 1, 2024"
+date-format: long
+abstract: "."
+format: pdf
+number-sections: true
+bibliography: references.bib
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(boot)
+library(broom.mixed)
+library(collapse)
+library(dataverse)
+library(gutenbergr)
+library(janitor)
+library(knitr)
+library(marginaleffects)
+library(modelsummary)
+library(rstanarm)
+library(tidybayes)
+library(arrow)
+```
+
+
+# Introduction
+
+
+We use R[@citeR] and the dataset from . To further enable the analysis I employed the use of the following packages: dataverse[@dataverse], ggplot[@ggplot2], tidyverse[@tidyverse], arrow[@arrow], rstanarm[@rstanarm], modelsummary[@modelsummary] and here[@here].
+
+# Data {#sec-data}
+
+
+
+## Data Source and variable
+
+# Model
+
+
+
+
+## Model set-up
+
+
+
+
+We run the model in R [@citeR] using the `rstanarm` package of @rstanarm, `modelsummary` package of @modelsummary and `here` package of @here. We use the default priors from `rstanarm`.
+
+
+### Model justification
+
+
+
+
+# Results
+
+Our results are summarized in 
+
+# Discussion
+
+
+
+
+
+
+\newpage
+
+
+# References
+
+
