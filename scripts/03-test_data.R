@@ -13,13 +13,14 @@ library(testthat)
 #### Run the analysis data ####
 drbpt4 <- read.csv("data/analysis_data/analysis_data.csv")
 
+
+
 #### Test the data ####
 test_that("Check class", {
   expect_type(drbpt4$DRB, "double")
   expect_type(drbpt4$PTS, "double")
   
 })
-
 
 
 test_that("Check complete", {
