@@ -1,10 +1,10 @@
 ---
-title: ""
+title: "Importance of the Correlation between Points and Defensive Rebound"
 author: "Zheng(Zeb) Yang"
-thanks: "Code and data are available at: <https://github.com/iloveyz12/NBAdefenceplay>. "
+thanks: "Code and data are available at: <https://github.com/iloveyz12/NBAdefenceplay>."
 date: "April 1, 2024"
 date-format: long
-abstract: "."
+abstract: "In the realm of American sports, the NBA (National Basketball Association) stands out as one of the most popular leagues. This study delves into the linear relationship between the average points scored and average defensive rebounds per game among NBA teams over the past four seasons. By analyzing regular season data from the NBA's recent four seasons, this research aims to explore the correlation between team scoring and defensive rebounding. Additionally, a linear regression model will be constructed to predict this relationship. Results show that the playing defence is crucial as the average points per game increases when the defensive rebound increases. The findings will contribute to a deeper understanding of the interplay between team offense and defense in the NBA."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -33,14 +33,14 @@ library(arrow)
 
 # Introduction
 
+Among the major sports leagues in the United States, the NBA has secured a prominent position, drawing substantial attention from fans worldwide. In recent years, there has been increasing interest in understanding the dynamics between team scoring and defensive performance within the league. As such, this study focuses on examining the linear relationship between two crucial metrics: average points scored and average defensive rebounds per game by NBA teams over the past four seasons. By investigating these variables, we aim to uncover insights into how offensive productivity relates to defensive resilience in the NBA context. This research is pivotal to uncover the interactions between scoring and defensive strategies employed by NBA teams, ultimately enhancing our comprehension of the league's gameplay dynamics.
 
-We use R[@citeR] and the dataset from . To further enable the analysis I employed the use of the following packages: dataverse[@dataverse], ggplot[@ggplot2], tidyverse[@tidyverse], arrow[@arrow], rstanarm[@rstanarm], modelsummary[@modelsummary] and here[@here].
+I used R[@citeR] and to further enable the analysis, I employed the use of the following packages: dataverse[@dataverse], ggplot[@ggplot2], tidyverse[@tidyverse], arrow[@arrow], rstanarm[@rstanarm], modelsummary[@modelsummary] and here[@here].
 
 # Data {#sec-data}
 
 
 
-## Data Source and variable
 
 # Model
 
@@ -63,6 +63,7 @@ We run the model in R [@citeR] using the `rstanarm` package of @rstanarm, `model
 # Results
 
 Our results are summarized in 
+
 
 # Discussion
 
