@@ -35,6 +35,8 @@ library(arrow)
 
 Among the major sports leagues in the United States, the NBA has secured a prominent position, drawing substantial attention from fans worldwide. In recent years, there has been increasing interest in understanding the dynamics between team scoring and defensive performance within the league. As such, this study focuses on examining the linear relationship between two crucial metrics: average points scored and average defensive rebounds per game by NBA teams over the past four seasons. By investigating these variables, we aim to uncover insights into how offensive productivity relates to defensive resilience in the NBA context. This research is pivotal to uncover the interactions between scoring and defensive strategies employed by NBA teams, ultimately enhancing our comprehension of the league's gameplay dynamics.
 
+In Section @sec-data...
+
 I used R[@citeR] and to further enable the analysis, I employed the use of the following packages: dataverse[@dataverse], ggplot[@ggplot2], tidyverse[@tidyverse], arrow[@arrow], rstanarm[@rstanarm], modelsummary[@modelsummary] and here[@here].
 
 # Data {#sec-data}
