@@ -10,7 +10,8 @@ library(tidyverse)
 # [...UPDATE THIS...]
 
 #### Download data ####
-# All data is downloaded from https://www.basketball-reference.com/leagues/
+# All data is downloaded directly from open data source: basketball reference
+# https://www.basketball-reference.com/leagues/
 
 
 
