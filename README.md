@@ -2,6 +2,7 @@
 
 ## Overview
 
+This repository explores the relationship between defensive rebounds and points scoring per game for each team in NBA through four regular seasons. It aims to understand how defensive rebounds influence a team's scoring. The study develops a linear model to predict scoring based on defensive rebounding performance. Data is sourced from open database, Basketball Reference.
 
 Code and data are available at: <https://github.com/iloveyz12/NBAdefenceplay>.
 
