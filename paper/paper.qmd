@@ -2,7 +2,7 @@
 title: "Importance of the Correlation between Points and Defensive Rebound"
 author: "Zheng(Zeb) Yang"
 thanks: "Code and data are available at: <https://github.com/iloveyz12/NBAdefenceplay>."
-date: "April 1, 2024"
+date: "April 17, 2024"
 date-format: long
 abstract: "In the realm of American sports, the NBA (National Basketball Association) stands out as one of the most popular leagues. This study delves into the linear relationship between the average points scored and average defensive rebounds per game among NBA teams over the past four seasons. By analyzing regular season data from the NBA's recent four seasons, this research aims to explore the correlation between team scoring and defensive rebounding. Additionally, a linear regression model will be constructed to predict this relationship. Results show that the playing defence is crucial as the average points per game increases when the defensive rebound increases. The findings will contribute to a deeper understanding of the interplay between team offense and defense in the NBA."
 format: pdf
@@ -30,53 +30,87 @@ library(tidybayes)
 library(arrow)
 ```
 
-
 # Introduction
 
-Among the major sports leagues in the United States, the NBA has secured a prominent position, drawing substantial attention from fans worldwide. In recent years, there has been increasing interest in understanding the dynamics between team scoring and defensive performance within the league. As such, this study focuses on examining the linear relationship between two crucial metrics: average points scored and average defensive rebounds per game by NBA teams over the past four seasons. By investigating these variables, we aim to uncover insights into how offensive productivity relates to defensive resilience in the NBA context. This research is pivotal to uncover the interactions between scoring and defensive strategies employed by NBA teams, ultimately enhancing our comprehension of the league's gameplay dynamics.
-
-In Section @sec-data...
+Among the major sports leagues in the United States, the NBA has secured a prominent position, drawing substantial attention from fans worldwide. In recent years, there has been increasing interest in understanding the dynamics between team scoring and defensive performance within the league. Rebounding is one of the most important aspects of winning games. In basketball, a rebound is the ball that bounces back after an unsuccessful basket attempt. The player who subsequently catches the ball (rebounding) is awarded the rebound. If the defending team grabs it, they secured a defensive rebound @owayo. Offensive rebounding gives your team extra chances, and free throw opportunities, and frustrates the defense. Defensive rebounding is a key part of good defense, limiting the offense to one shot@Gels_2024. As such, this study focuses on examining the linear relationship between two crucial metrics: average points scored and average defensive rebounds per game by NBA teams over the past four seasons. By investigating these variables, we aim to uncover insights into how offensive productivity relates to defensive resilience in the NBA context. This research is pivotal to uncover the interactions between scoring and defensive strategies employed by NBA teams, ultimately enhancing our comprehension of the league's gameplay dynamics.
 
 I used R[@citeR] and to further enable the analysis, I employed the use of the following packages: dataverse[@dataverse], ggplot[@ggplot2], tidyverse[@tidyverse], arrow[@arrow], rstanarm[@rstanarm], modelsummary[@modelsummary] and here[@here].
 
 # Data {#sec-data}
 
+The data utilized in this paper focus on the defensive rebounds per game and points per game, which is accessible from the open database Basketball Reference @Basketball. Specifically, I collected data spanning the NBA regular seasons from 2020 to 2023, capturing the average per game statistics for both defensive rebounds and points. With thirty NBA teams over the course of four years, this study encompasses a total of 120 data points.
 
-
+After downloading the datasets for four seasons, I cleaned them, discarding any irrelevant data for this particular study, and combined them into one data file. The choice to acquire data from the Basketball Reference open data platform stemmed from its user-friendly interface and ease of data extraction compared to the NBA's official website. Additionally, the platform offered convenience in data storage and retrieval, facilitating a smoother research process.
 
 # Model
 
+Through the data analysis conducted in this study, I uncovered a significant correlation between defensive rebounds and points scored in basketball games. This finding suggests that defensive rebounding ability may influence a team's scoring ability, thereby affecting overall game performance. To further understand this relationship and to infer the impact of defensive rebounds on scoring, I constructed a linear regression model. This model allows me to examine how changes in defensive rebounding statistics can predict variations in points scored, providing valuable insight into the dynamics of basketball games.
 
 
 
 ## Model set-up
 
+Define $Y$ as the points scored per game by a team. Then $\text{Defensive Rebound}_i$ is the defensive rebound of each team per game. $\beta_0$ is the intercept, which indicates the points when defensive rebounds are 0, and $\beta_1$ represent the slope indicating the change in points for each additional defensive rebound. $\epsilon$ is the error term, representing the unexplained random variation in the model.
 
 
+\begin{align} 
+Y_{i} = \beta_{0}+\beta_{1}\text{Defensive Rebound}_{i}+\epsilon 
+\end{align}
 
-We run the model in R [@citeR] using the `rstanarm` package of @rstanarm, `modelsummary` package of @modelsummary and `here` package of @here. We use the default priors from `rstanarm`.
-
+In the model, the independent variable is the defensive rebound per game. The dependent variable is the points of each team per game.
 
 ### Model justification
 
+I anticipate a linear relationship between defensive rebounds and points scored in basketball games. This expectation arises from the nature of defensive rebounds, which occur when the opposing team fails to complete their offensive possession. Securing a defensive rebound signifies a defensive stop and provides the defending team with an opportunity to transition into offense, potentially resulting in higher scoring opportunities. Therefore, I hypothesize that as the number of defensive rebounds increases, points scored will also increase linearly.
 
 
 
 # Results
 
-Our results are summarized in 
+```{r}
+#| label: fig-drb
+#| fig-cap: "The distribution of points per game, by defensive rebounds per game"
+#| echo: false
+#| warning: false
+#| results: false
 
+cleaned_four_seasons <- readRDS(here::here("models/first_model.rds"))
+
+cleaned_four_seasons |>
+  ggplot(aes(x = DRB, y = PTS)) +
+  geom_point() + 
+  geom_smooth(
+    method = "lm",
+    se = FALSE,
+    color = "black",
+    linetype = "dashed",
+    formula = "y ~ x"
+  )
+  theme_classic() +
+  labs(
+    x = "Number of defensive rebounds per game",
+    y = "Points per game",
+  ) 
+```
+
+My results are summarized in @fig-drb. @fig-drb illustrates the correlation between defensive rebounds per game and points scored per game in NBA basketball games. The scatter plot portrays the general trend of defensive rebounding and scoring as the game progresses, further accentuated by the regression line. The model suggests that as the number of defensive rebounds of each team securing per game increases, there is a linear growth in points scored.
+
+```{r}
+#| label: tbl-sum
+#| tbl-cap: "Model summary of the points per game, by defensive rebounds per game by each team"
+#| echo: false
+#| eval: true
+#| warning: false
+#| message: false
+
+cleaned_four_seasons <- readRDS(here::here("models/first_model.rds"))
+modelsummary(cleaned_four_seasons)
+```
+
+@tbl-sum shows the coefficients of the predictor variables of my model. The coefficient for DRB (defensive rebounds) suggests that for each increase of defensive rebounds, the predicted value of the dependent variable, points scored per game, increases by approximately 0.607, with a standard error of 0.200, reflecting the uncertainty in the estimated coefficient. 
 
 # Discussion
 
-
-
-
-
-
 \newpage
 
-
 # References
-
-
